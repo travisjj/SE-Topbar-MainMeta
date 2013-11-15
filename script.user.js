@@ -33,5 +33,9 @@ function with_jquery(f) {
 
 
 with_jquery(function($) {
-	$(".topbar-menu-links").prepend("<a href='http://stackoverflow.com'>main</a>");
+	if ( document.location.host.indexOf("meta.") == 0 ) {
+		$(".topbar-menu-links").prepend("<a href='http://" + document.location.host.slice(5) + "'>main</a>");
+	} else {
+		$(".topbar-menu-links").prepend("<a href='http://" + document.location.host + "'>meta</a>");
+	}
 });
