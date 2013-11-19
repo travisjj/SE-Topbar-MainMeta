@@ -6,8 +6,15 @@ Userscript for adding back the [main] link into the new top bar design being tes
 Styles the bar as light (similar to the coloring before the beta). 
 Overrides the hover styles to correlate with the light styling.
 
-Side feature:
-There is a side feature that I use in my userscript which I left in here.
-It is a small ellipse on the top right hand (not visible if the window isn't scrolled).
-Clicking it will cause the top bar to dock and essentially become position:fixed.
-At that point the ellipse will change color, and a second click will undock the bar (position:relative) back to the top.
+Side feature: Docking Button
+
+Location: top right
+Description: black oval, grey hover, blue after left click
+
+Actions:
+ Left Click: Dock or Un-Dock the top bar to the top of the window. Black means undocked. Blue means docked.
+ Right Click:
+   Page just loaded and window is not scrolled: Nothing occurs.
+   Window was scrolled: position is saved, and the window is scroll to the top.
+   The dock was previously right clicked and the window is at the top: Scroll to saved position.
+   The dock was previously right clicked and the window is scrolled: Save new position, scroll to top.
