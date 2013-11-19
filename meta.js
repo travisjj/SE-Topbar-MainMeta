@@ -34,6 +34,7 @@ $$(function($){
 });
 
 //Docking button - Places a small oval in the top right which toggles the top bar docking
+//Remove or comment this code out to disable the Docking feature
 $$(function($){
  $('.topbar').css({position:"relative",top:0,left:0});
  var ol = $('<div id="barToggle">');
