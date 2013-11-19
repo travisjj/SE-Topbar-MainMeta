@@ -11,10 +11,16 @@ Side feature: Docking Button
 Location: top right
 Description: black oval, grey hover, blue after left click
 
-Actions:
- Left Click: Dock or Un-Dock the top bar to the top of the window. Black means undocked. Blue means docked.
- Right Click:
-   Page just loaded and window is not scrolled: Nothing occurs.
-   Window was scrolled: position is saved, and the window is scroll to the top.
-   The dock was previously right clicked and the window is at the top: Scroll to saved position.
-   The dock was previously right clicked and the window is scrolled: Save new position, scroll to top.
+Dock Actions:
+
+Left Click: 
+
+Dock or Un-Dock the top bar to the top of the window. Black means undocked. Blue means docked.
+
+Right Click:
+   
+Page just loaded and window is not scrolled: Nothing occurs.
+
+Window was scrolled: position is saved, and the window is scroll to the top.
+The dock was previously right clicked and the window is at the top: Scroll to saved position.
+The dock was previously right clicked and the window is scrolled: Save new position, scroll to top.
