@@ -1,0 +1,13 @@
+{
+  "name": "meta",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Scripts to modift meta.stackoverflow",
+  "content_scripts": [
+    {
+      "matches": ["http://meta.stackoverflow.com/*"],
+      "js": ["meta.js"],
+      "css": ["meta.css"]
+    }
+  ]
+}
