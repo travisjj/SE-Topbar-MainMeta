@@ -5,6 +5,7 @@
 // @author TravisJ
 // @license GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
 // @include http://meta.stackoverflow.com/*
+// forked from: https://github.com/Undo1/SE-Topbar-MainMeta
 
 function $$(f) {
     var script = document.createElement("script");
