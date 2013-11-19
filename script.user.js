@@ -1,42 +1,55 @@
 // ==UserScript==
-// @name MainMetaLink
-// @description Adds the main link back to mSO, right where it belongs.
-// @namespace Undo (This is to avoid conflicts with userscripts that share a name)
-// @author Undo
+// @name MetaTopBarLight
+// @description The light side of the meta.
+// @namespace TravisJ
+// @author TravisJ
 // @license GNU GPL v3 (http://www.gnu.org/copyleft/gpl.html)
-// @include http://stackoverflow.com/*
-// @include http://serverfault.com/*
-// @include http://superuser.com/*
 // @include http://meta.stackoverflow.com/*
-// @include http://meta.serverfault.com/*
-// @include http://meta.superuser.com/*
-// @include http://stackapps.com/*
-// @include http://*.stackexchange.com/*
-// @include http://askubuntu.com/*
-// @include http://meta.askubuntu.com/*
-// @include http://answers.onstartups.com/*
-// @include http://meta.answers.onstartups.com/*
-// @include http://mathoverflow.net/*
-// @include http://meta.mathoverflow.net/*
-// @include http://discuss.area51.stackexchange.com/*
-// @exclude http://chat./
 
-
-// ==/UserScript==
-function with_jquery(f) {
+function $$(f) {
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.textContent = "(" + f.toString() + ")(jQuery)";
-    document.body.appendChild(script);
+    document.body.appendChild(script).parentNode.removeChild(script);
 };
 
+//Main Link
+$$(function(){
+ //main link script authored by @Undo
+ $(".topbar-menu-links").prepend("<a href='http://" + document.location.host.slice(5) + "'>main</a>");
+});
 
+//Replace gravatar with name
+$$(function($) {
+ $(".profile-me > div:first > img:first").replaceWith("<span class='links-container' style='padding-right:2px;'>" + $(".profile-me > div:first").attr('title') + "</span>");
+ $('.reputation').css({fontWeight:'bold'});
+});
 
-with_jquery(function($) {
-	$(".topbar-menu-links").prepend("<a href='http://chat." + document.location.host + "'>chat</a>");
-	if ( document.location.host.indexOf("meta.") == 0 ) {
-		$(".topbar-menu-links").prepend("<a href='http://" + document.location.host.slice(5) + "'>main</a>");
-	} else {
-		$(".topbar-menu-links").prepend("<a href='http://" + document.location.host + "'>meta</a>");
-	}
+//adjusting styles which were being overriden from the css file
+$$(function($){
+ $('.topbar .topbar-links .topbar-flair .reputation, .topbar .topbar-links .topbar-flair .badgecount').css('color','inherit');
+ $('.topbar .topbar-links .topbar-menu-links a, .topbar .topbar-links .topbar-menu-links a:visited').css('color','inherit');
+ $('.topbar .icon-site-switcher').css('background-position','10px -51px');
+});
+
+//Docking button - Places a small oval in the top right to toggle the top bar "sticky"
+$$(function($){
+ $('.topbar').css({zIndex:10,position:"relative",top:0,left:0});
+ var ol = $('<div id="barToggle">');
+ $("body").append(ol);
+ var pos = false;
+ ol.click(function(){
+  pos = !pos;
+  var t = $(this);
+  if( pos ){
+   $('.topbar').css("position","fixed");
+   t.css({zIndex:15,backgroundColor:"blue"});
+   $('.container').css('margin-top','34px');
+  }else{
+   $('.topbar').css("position","relative");
+   t.css({zIndex:5,backgroundColor:"#000"});
+   $('.container').css('margin-top','');
+  }
+ });
+ ol[0].oncontextmenu = function(){ window.scrollTo(0); };
 });
