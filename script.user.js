@@ -33,9 +33,9 @@ $$(function($){
  $('.topbar .icon-site-switcher').css('background-position','10px -51px');
 });
 
-//Docking button - Places a small oval in the top right to toggle the top bar "sticky"
+//Docking button - Places a small oval in the top right which toggles the top bar docking
 $$(function($){
- $('.topbar').css({zIndex:10,position:"relative",top:0,left:0});
+ $('.topbar').css({position:"relative",top:0,left:0});
  var ol = $('<div id="barToggle">');
  $("body").append(ol);
  var pos = false;
@@ -52,5 +52,19 @@ $$(function($){
    $('.container').css('margin-top','');
   }
  });
- ol[0].oncontextmenu = function(){ window.scrollTo(0); };
+ ol[0].oncontextmenu = function(ev){ 
+   var cur = $(document).scrollTop();
+   var prev = this.getAttribute('data-scroll');
+   if( cur != 0 ){
+    this.setAttribute('data-scroll',cur);
+   }
+   if( prev != null && cur == 0){
+    window.scrollTo(0,prev);
+   }else{
+    window.scrollTo(0);
+   }
+   ev.preventDefault();
+   ev.stopPropagation();
+ };
 });
+
