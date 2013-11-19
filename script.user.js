@@ -22,7 +22,7 @@ $$(function(){
 
 //Replace gravatar with name
 $$(function($) {
- $(".profile-me > div:first > img:first").replaceWith("<span class='links-container' style='padding-right:2px;'>" + $(".profile-me > div:first").attr('title') + "</span>");
+ $(".profile-me > div:first").append("<span class='links-container' style='padding-right:2px;'>" + $(".profile-me > div:first").attr('title') + "</span>");
  $('.reputation').css({fontWeight:'bold'});
 });
 
